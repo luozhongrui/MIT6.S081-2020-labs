@@ -1,16 +1,26 @@
-# MIT6.S081-2020-labs
-MIT6.S081实验官方纯净源代码，转载于MIT官方仓库git clone git://g.csail.mit.edu/xv6-labs-2020，由于GitHub上没有放出2020版本的MIT6.S081的实验源代码仓库，故在此转载一下，方便大家Fork，也方便我自己使用
+# Lab1: Xv6 and Unix utilities
 
-## 分支说明
+## sleep
 
-- `main`分支：
 
-  - 我搭建的一个Docker环境，集成了code-server（网页端Vscode），以达到开箱即用的效果，通过`Docker`的`Volumes`机制可通过`Docker`访问宿主机的文件，并可以修改和执行（相当于将宿主机的文件挂载在Docker的虚拟环境中），具体搭建&使用流程点[这里](https://zhuanlan.zhihu.com/p/417668697)，效果图如下：
+**YOUR JOB**
+实现 xv6 的 UNIX 程序 `sleep`：您的 `sleep` 应该暂停到用户指定的计时数。一个滴答(tick)是由 xv6 内核定义的时间概念，即来自定时器芯片的两个中断之间的时间。您的解决方案应该在文件 `user/sleep.c` 中
 
-  ![image](https://camo.githubusercontent.com/662e3c37f47f849a515958594a24097708c823fa5af56a6b880e0ef6f6b3cb79/68747470733a2f2f63646e2e6a7364656c6976722e6e65742f67682f43616c76696e4861796e65732f496d616765487562406d61696e2f426c6f67496d6167652f696d6167652e356c383430616b35767730302e706e67)
+## pingpong
+**YOUR JOB**
+编写一个使用UNIX系统调用的程序来在两个进程之间`“ping-pong”`一个字节，请使用两个管道，每个方向一个。父进程应该向子进程发送一个字节;子进程应该打印`<pid>: received ping`，其中`<pid>`是进程ID，并在管道中写入字节发送给父进程，然后退出;父级应该从读取从子进程而来的字节，打印`<pid>: received pong`，然后退出。您的解决方案应该在文件`user/pingpong.c中`。
 
-  - 一些学习笔记
-  - 一些操作系统的资料
+## Primes
+**YOUR JOB**
 
-- 其他分支：根据官方的项目一个个`clone`过来的，因为mit-pdos的github组织没有开源这个实验的环境，所以我建立这个github仓库方便大家直接fork成自己的项目并且通过github跟踪自己的实验过程，鼓励大家开源自己的学习成果，共同进步，共同学习！！！加油！！！
+使用管道编写prime sieve(筛选素数)的并发版本。这个想法是由Unix管道的发明者Doug McIlroy提出的。请查看这个网站(翻译在下面)，该网页中间的图片和周围的文字解释了如何做到这一点。您的解决方案应该在`user/primes.c`文件中。
 
+
+## find
+**YOUR JOB**
+
+写一个简化版本的UNIX的`find`程序：查找目录树中具有特定名称的所有文件，你的解决方案应该放在`user/find.c`
+
+## xargs
+ **YOUR JOB**
+编写一个简化版UNIX的`xargs`程序：它从标准输入中按行读取，并且为每一行执行一个命令，将行作为参数提供给命令。你的解决方案应该在`user/xargs.c`
